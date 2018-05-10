@@ -8,17 +8,17 @@ console.log('Hello Bence!\n');
 console.log('Humpty Dumpty sat on a wall,\nHumpty Dumpty had a great fall.\nAll the king\'s horses and all the king\'s men\nCouldn\'t put Humpty together again.\n');
 
 // (hello-others) Greeting three classmates
-console.log('Hello Orsi!\nHello Sanyi!\nHello Nori\n')
+console.log('Hello Orsi!\nHello Sanyi!\nHello Nori!\n')
 
-/*
-This is 
-a sexy 
-multi-line 
-comment
-*/
+// (intruduce-yourself) Hi!
+console.log('\nBence Vidosits\n22\n1.75\n')
 
-console.log('String!')
-console.log(42)
-console.log(3.141592)
-console.log(true)
-console.log('\n')
+// (two-numbers) Doing operations on x and y
+function qikmafs(num1, num2) {
+
+    console.log(num1 + num2, num2 - num1, num1 * num2, num2 / num1, num2 % num1);
+
+    return true;
+}
+qikmafs(13, 22);
+
