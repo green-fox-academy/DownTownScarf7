@@ -1,24 +1,14 @@
 'use strict';
-/*
-function triangle(star: string, lines: number) {
-  for (let i = lines; i < 1; i--) {
-    if (i == 1) {
-      return `${star}\n`;
-    } else {
-      console.log(triangle(star, lines));
-      return `${star}`;
-    }
-  }
-}
-console.log(triangle("*", 4));
-*/
 
-for (let i = 0; i < 4; i++) {
-  if (i == 1) {
-    console.log('*');
-  } else {
-      for (i ){
-        console.log('*\n');
-      }
+function triangle(lines: number) {
+  let star: string = '';
+  for (let i = 0; i < lines; i++) {
+    star = '';
+    for (let j = 0; j <= i; j++) {
+      star += "*";
     }
+    console.log(star);
+  }
+  return true;
 }
+triangle(4);
