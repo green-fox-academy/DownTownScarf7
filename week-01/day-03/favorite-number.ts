@@ -4,6 +4,6 @@
 function favNum(num1) {
   let favouriteNumber: number = num1;
 
-  return console.log(`My favourite number is ${favouriteNumber}`);
+  return `My favourite number is ${favouriteNumber}`;
 }
-favNum(5)
+console.log(favNum(5));
