@@ -7,10 +7,7 @@ export{};
 // Create a function called quoteSwap().
 let words: string[] = ['What', 'I', 'do', 'create,', 'I', 'cannot', 'not', 'understand.'];
 function quoteSwap(list:string[]) {
-  let temp:string[] = new Array(list.length);
-  for (let i = 0; i <= list.length; i++) {
-    temp[i] = list[i];
-  }
+  let temp:string[] = list.concat([]);
   temp.splice(2, 1, list[5]);
   temp.splice(5, 1, list[2]);
   return temp.join(' ');
