@@ -9,7 +9,7 @@ const ctx = canvas.getContext('2d');
 // and draws a square of that size to the center of the canvas.
 // Draw 3 squares with that function.
 // Avoid code duplication.
-function rndColor() {
+function rndColor(): string {
   let r = 255*Math.random()|0,
       g = 255*Math.random()|0,
       b = 255*Math.random()|0;
