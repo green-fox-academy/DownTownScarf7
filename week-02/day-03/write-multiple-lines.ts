@@ -5,7 +5,7 @@ declare function require(path:string):any;
 
 function bombFile(path:string, data:string, num:number = 1):void{
   // defining variables
-  let befSize:number = -1, aftSize:number = 0;
+  let befSize:number = -1, aftSize:number = 0, temp:string = data.concat('');
   const fs = require('fs');
   // get starting stats
   if (fs.existsSync(path)){
@@ -20,8 +20,9 @@ function bombFile(path:string, data:string, num:number = 1):void{
   console.log('Target acquired!');
   // prepare string bomb
   for (let i = 0; i <= num; i++){
-    data += `\n${data}`;
+    temp += `\n${data}`;
   }
+  data = temp;
   // write string to file
   try{
     fs.appendFileSync(path, data);
