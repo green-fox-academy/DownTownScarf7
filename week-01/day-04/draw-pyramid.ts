@@ -1,6 +1,6 @@
 'use strict';
 
-function pyramid(lines: number) {
+function pyramid(lines: number): void {
   let star: string = '';
   for (let i: number = 0; i < lines; i++) {
     star = '';
@@ -15,6 +15,5 @@ function pyramid(lines: number) {
     }
     console.log(star);
   }
-  return true;
 }
 pyramid(4);
