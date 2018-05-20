@@ -1,85 +1,92 @@
+export{};
 'use strict';
 
-let a: number = 3;
+let num1: number = 3,
+    num2: number = 345,
+    str: string = 'Apple';
+
 // make it bigger by 10
-console.log(`${a} plus 10 is:`);
-a += 10;
-console.log(a);
+console.log(`${num1} plus 10 is:`);
+num1 += 10;
+console.log(num1);
 
-let b: number = 100;
+num1 = 100;
 // make it smaller by 7
-console.log(`${b} minus 7 is:`);
-b -= 7;
-console.log(b);
+console.log(`${num1} minus 7 is:`);
+num1 -= 7;
+console.log(num1);
 
-let c: number = 44;
-// double c's value
-console.log(`${c} multiplied by 2 is:`);
-c *= 2;
-console.log(c);
+num1 = 44;
+// double num1's value
+console.log(`${num1} multiplied by 2 is:`);
+num1 *= 2;
+console.log(num1);
 
-let d: number = 125;
-// divide d's value by 5
-console.log(`${d} divided by 5 is:`);
-d /= 5;
-console.log(d);
+num1 = 125;
+// divide num1's value by 5
+console.log(`${num1} divided by 5 is:`);
+num1 /= 5;
+console.log(num1);
 
-let e: number = 8;
-// what's the cube of e's value?
-console.log(`${e}'s cube value is:`);
-e **= 3;
-console.log(e);
+num1 = 8;
+// what's the cube of num1's value?
+console.log(`${num1}'s cube value is:`);
+num1 **= 3;
+console.log(num1);
 
-let f1: number = 123;
-let f2: number = 345;
-// tell if f1 is bigger than f2 (as a boolean)
-if (f1 > f2) {
+num1 = 123;
+// tell if num1 is bigger than num2 (as a boolean)
+if (num1 > num2) {
   console.log(true);
 } else {
   console.log(false);
 }
-let g1: number = 350;
-let g2: number = 200;
-// tell if the double of g2 is bigger than g1 (as a boolean)
-if (g2 * 2 > g1) {
+
+num1 = 350;
+num2 = 200;
+// tell if the double of num2 is bigger than num1 (as a boolean)
+if (num2 * 2 > num1) {
   console.log(true);
 } else {
   console.log(false);
 }
-let h: number = 1357988018575474;
-// tell if h has 11 as a divisor (as a boolean)
-if (h % 11 == 0) {
+
+num1 = 1357988018575474;
+// tell if num1 has 11 as a divisor (as a boolean)
+if (num1 % 11 == 0) {
   console.log(true);
 } else {
   console.log(false);
 }
-let i1: number = 10;
-let i2: number = 3;
-// tell if i1 is higher than i2 squared and smaller than i2 cubed (as a boolean)
-if (i1 > i2 ** 3 && i1 < i2 ** 2) {
+
+num1 = 10;
+num2 = 3;
+// tell if num1 is higher than num2 squared and smaller than num2 cubed (as a boolean)
+if (num1 > num2 ** 3 && num1 < num2 ** 2) {
   console.log(true);
 } else {
   console.log(false);
 }
-let j: number = 1521;
-// tell if j is dividable by 3 or 5 (as a boolean)
-if (j % 3 == 0 || j % 5 == 0) {
+
+num1 = 1521;
+// tell if num1 is dividable by 3 or 5 (as a boolean)
+if (num1 % 3 == 0 || num1 % 5 == 0) {
   console.log(true);
 } else {
   console.log(false);
 }
-let k: string = 'Apple';
-// fill the k variable with its content 4 times
+
+// fill the str variable with its content 4 times
 // I don't really know if this should be how I've done it or just "apple" * 4, I'll stick with this for now
-for (let i = 0; i < 4; i++) {
-  k += k;
+for (let i: number = 0; i < 4; i++) {
+  str += str;
 }
-console.log(k);
+console.log(str);
 // or
-k = 'Apple';
+str = 'Apple';
 let temp: string = '';
-for (let i = 0; i < 4; i++) {
-  temp += k;
+for (let i: number = 0; i < 4; i++) {
+  temp += str;
 }
-k = temp;
-console.log(k);
+str = temp;
+console.log(str);
