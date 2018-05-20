@@ -1,5 +1,5 @@
 'use strict';
 
-for (let i = 0; i < 101; i++){
+for (let i: number = 0; i <= 100; i++){
   console.log('I won\'t cheat on the exam!');
 }
