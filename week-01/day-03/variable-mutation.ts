@@ -2,31 +2,31 @@
 
 let a: number = 3;
 // make it bigger by 10
-console.log(a);
-a = a + 10;
+console.log(`${a} plus 10 is:`);
+a += 10;
 console.log(a);
 
 let b: number = 100;
 // make it smaller by 7
-console.log(b);
-b = b - 7;
+console.log(`${b} minus 7 is:`);
+b -= 7;
 console.log(b);
 
 let c: number = 44;
 // double c's value
-console.log(c);
-c = c * 2;
+console.log(`${c} multiplied by 2 is:`);
+c *= 2;
 console.log(c);
 
 let d: number = 125;
 // divide d's value by 5
-console.log(d);
-d = d / 5;
+console.log(`${d} divided by 5 is:`);
+d /= 5;
 console.log(d);
 
 let e: number = 8;
 // what's the cube of e's value?
-console.log(e);
+console.log(`${e}'s cube value is:`);
 e **= 3;
 console.log(e);
 
@@ -40,7 +40,7 @@ if (f1 > f2) {
 }
 let g1: number = 350;
 let g2: number = 200;
-// tell if the double of g2 is bigger than g1 (pras a boolean)
+// tell if the double of g2 is bigger than g1 (as a boolean)
 if (g2 * 2 > g1) {
   console.log(true);
 } else {
@@ -71,8 +71,15 @@ if (j % 3 == 0 || j % 5 == 0) {
 let k: string = 'Apple';
 // fill the k variable with its content 4 times
 // I don't really know if this should be how I've done it or just "apple" * 4, I'll stick with this for now
-console.log(k);
 for (let i = 0; i < 4; i++) {
   k += k;
 }
+console.log(k);
+// or
+k = 'Apple';
+let temp: string = '';
+for (let i = 0; i < 4; i++) {
+  temp += k;
+}
+k = temp;
 console.log(k);
