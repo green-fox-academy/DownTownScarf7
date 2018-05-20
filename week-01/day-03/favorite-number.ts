@@ -1,7 +1,6 @@
 'use strict';
 
-// (favourite-number) Useful comment right 'ere!
-function favNum(num1) {
+function favNum(num1: number): string {
   let favouriteNumber: number = num1;
 
   return `My favourite number is ${favouriteNumber}`;
