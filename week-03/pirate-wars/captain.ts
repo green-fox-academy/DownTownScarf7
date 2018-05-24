@@ -3,9 +3,9 @@
 import { Pirate } from './pirates';
 
 class Captain extends Pirate {
-  constructor(id) {
-    super(id);
-    this.id = `Captain ${id}`;
+  constructor(id, idShip) {
+    super(id, idShip);
+    this.id = `Captain ${id} of ${idShip}`;
     this.drunkness = 30;
     this.atk = 50;
     this.dfs = 50;

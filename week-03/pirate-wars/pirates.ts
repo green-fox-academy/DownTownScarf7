@@ -12,8 +12,8 @@ class Pirate {
   protected dead: boolean;
   protected id: string;
 
-  constructor(id: number) {
-    this.id = `Pirate ${id}`;
+  constructor(id: number, idShip: string) {
+    this.id = `Pirate ${id} of ${idShip}`;
     this.drunkness = rndNum(0, 50);
     this.atk = rndNum(20, 30);
     this.dfs = rndNum(20, 30);
@@ -64,13 +64,14 @@ class Pirate {
     let temp: number = rndNum(20, 50);
     this.drunkness -= temp;
     this.modHealth(-10);
-    console.log(`Blehh, I just lost ${temp}% drunkness!`);
+    console.log(`Blehh, ${this.id} just lost ${temp}% drunkness!`);
     this._checkDrunkness();
   }
 
   public modHealth(num: number): void {
     this.health += num;
     if (this.health <= 0) {
+      this.health = 0;
       console.log(`Arrgh, ${this.id} died!`);
       this.dead = true;
     }
