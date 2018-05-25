@@ -63,6 +63,7 @@ class Ship {
   }
 
   public battle(target: Ship): void {
+    let self: Ship = this;
     if (this._health > 0 && this.getCrewSize() > 0) {
       if (this._cannonNum > 0) {
         console.log(`${this._id} firing at ${target._id} with ${this._cannonNum} cannons.`);
@@ -74,8 +75,9 @@ class Ship {
       } else {
         target._board();
       }
-      //setTimeout(target.battle(this), 1000);
-      target.battle(this);
+      setTimeout(function() {
+        target.battle(self);
+      }, 1000);
     } else if (this._health <= 0) {
       this._health = 0;
       console.log(`${this._id} just sunk!`);
