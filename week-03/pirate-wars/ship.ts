@@ -26,12 +26,12 @@ class Ship {
   private _rumStock: number;
   private _sunk: boolean;
 
-  constructor(id: number, crewSize: number = 20) {
+  constructor(id: number, health: number = 5000, cannonNum: number = 20, crewSize: number = 20) {
     this._crew = [];
     this._id = `Ship ${id}`;
-    this._health = 5000;
+    this._health = health;
     this._maxHealth = this._health + 0;
-    this._cannonNum = 20;
+    this._cannonNum = cannonNum;
     this._rumStock = 3;
     this._sunk = false;
     this._recruitCrew(crewSize);
