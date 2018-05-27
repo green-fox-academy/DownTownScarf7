@@ -3,10 +3,12 @@
 import { Pirate } from './pirates';
 import { Captain } from './captain';
 
+// RNG
 function rndNum(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// Stops the entire program for specified time
 function wait(ms: number): void {
   let start: number = Date.now(),
       now: number = start;
@@ -50,10 +52,12 @@ class Ship {
     return this._sunk;
   }
 
+  // Logs name, crewsize, health and the number of cannons
   public inspectShip(): void {
     console.log(`--------------\n${this._id}\n--------------\nCrew size: ${this._crew.length}\nHealth: ${this._health}\nCannons: ${this._cannonNum}\n--------------`);
   }
 
+  // Use Pirate object's decideRum method on every pirate if they have any in stock
   public drinkRum(): void {
     if (this._rumStock > 0) {
       for (let i: number = 0; i < this._crew.length; i++) {
@@ -65,6 +69,7 @@ class Ship {
     }
   }
 
+  // The first pirate on a ship is getting the Captain class instead of a normal Pirate
   private _recruitCrew(num: number): void {
     let temp: number = this._crew.length;
     for (let i: number = 0 + temp; i < num + temp; i++) {
@@ -76,6 +81,9 @@ class Ship {
     }
   }
 
+  // Decides the right approach in battle
+  // If a ship has maximum health, then it should fire with less cannons, else it would almost always win
+  // Uses recursion for the targeted ship to return fire
   public battle(target: Ship): void {
     if (this._health > 0 && this.getCrewSize() > 0) {
       if (this._cannonNum > 0) {
@@ -95,6 +103,7 @@ class Ship {
     } 
   }
 
+  // Changes health, checks if the ship has sunk or has no crew
   private _modHealth(num: number): void {
     this._health += num;
     if (this._health <= 0) {
@@ -107,6 +116,9 @@ class Ship {
     }
   }
 
+  // Fires at current ship
+  // Variables are created here to be able to log what happened efficiently
+  // All cannons fire once except if target ship sinks between cannonfires
   private _fireAt(cannonNum: number): void {
     let dmgCounter: number = 0,
         dstrdCannonCounter: number = 0,
@@ -122,7 +134,7 @@ class Ship {
           dstrdCannonCounter++;
           this._cannonNum--;
         }
-        if (rndNum(0, 100) < 20) {
+        if (rndNum(0, 100) < 25) {
           let temp: number[] = [rndNum(1, 5),  rndNum(20, 50)];
           crewCasualtyCounter += temp[0];
           crewDamageCounter += temp[1];
@@ -135,6 +147,7 @@ class Ship {
     console.log(`----------\n${this._id} Damage Report:\n   Damage suffered: ${dmgCounter}\n   Cannons destroyed: ${dstrdCannonCounter}\n   Crew: ${crewCasualtyCounter} men suffered ${crewDamageCounter} damage\n----------`);
   }
 
+  // Damages random crewmembers and removes them if they are dead
   private _damageCrew(numOfPirates: number, damage: number): void {
     for (let i: number = 0; i < numOfPirates; i++) {
       if (this.getCrewSize() > 0) {
@@ -149,6 +162,7 @@ class Ship {
     //console.log(`${this._id}'s ${numOfPirates} crewmember(s) suffered ${damage} damage!`);
   }
 
+  // Ram and board the other ship
   private _board() {
     console.log('Boarding not implemented yet!');
     this._modHealth(-1000);
