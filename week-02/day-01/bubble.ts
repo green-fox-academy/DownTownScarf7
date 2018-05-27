@@ -1,8 +1,8 @@
-export{};
+export { };
 'use strict';
 
-function bubble(arr: number[], ord: boolean = false) {
-  function sortNumber(a,b) {
+function bubble(arr: number[], ord: boolean = false): number[] {
+  function sortNumber(a: number, b: number): number {
     return a - b;
   }
   if (ord == true) {
