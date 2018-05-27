@@ -9,6 +9,8 @@ class Pirate {
   protected drunkness: number;
   protected atk: number;
   protected dfs: number;
+  protected atkOriginal: number;
+  protected dfsOriginal: number;
   protected health: number;
   protected maxHealth: number;
   protected dead: boolean;
@@ -17,17 +19,21 @@ class Pirate {
   constructor(id: number, idShip: string) {
     this.id = `Pirate ${id} of ${idShip}`;
     this.drunkness = rndNum(0, 50);
-    this.atk = rndNum(20, 30);
-    this.dfs = rndNum(20, 30);
+    this.atk = rndNum(5, 30);
+    this.dfs = rndNum(5, 30);
+    this.atkOriginal = this.atk + 0;
+    this.dfsOriginal = this.dfs + 0;
     this.health = 100;
     this.maxHealth = this.health + 0;
     this.dead = false;
+    this._checkDrunkness();
   }
 
   public isDead(): boolean {
     return this.dead;
   }
 
+  // To drink or not to drink
   public decideRum(): void {
     if (rndNum(0, this.drunkness) - (this.maxHealth - this.health) < 50) {
       console.log(`Arrgh, ${this.id} is ${this.drunkness}% drunk! Pour me anudder!`);
@@ -47,20 +53,15 @@ class Pirate {
   // Modifies stats according to drunkness
   private _checkDrunkness(): void {
     if (this.drunkness < 20) {
-      this.atk = rndNum(20, 30);
-      this.dfs = rndNum(20, 30);
+      this._modStats(-2, -2);
     } else if (this.drunkness >= 20 && this.drunkness < 40) {
-      this.atk = rndNum(17, 33);
-      this.dfs = rndNum(20, 30);
+      this._modStats(-1, -1);
     } else if (this.drunkness >= 40 && this.drunkness < 60) {
-      this.atk = rndNum(15, 25);
-      this.dfs = rndNum(25, 30);
+      this._modStats(1, 1);
     } else if (this.drunkness >= 60 && this.drunkness < 80) {
-      this.atk = rndNum(15, 20);
-      this.dfs = rndNum(25, 30);
+      this._modStats(2, 2);
     } else if (this.drunkness >= 80 && this.drunkness < 95) {
-      this.atk = rndNum(10, 20);
-      this.dfs = rndNum(30, 40);
+      this._modStats(5, 5);
       if (rndNum(0, 100) > 50) {
         this._vomit();
       }
@@ -88,9 +89,9 @@ class Pirate {
   }
 
   // Modifies stats
-  private _modStats(num: number): void {
-    this.atk += num;
-    this.dfs += num;
+  private _modStats(atk: number, dfs: number): void {
+    this.atk += atk;
+    this.dfs += dfs;
   }
 }
 
