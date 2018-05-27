@@ -3,5 +3,8 @@ export{};
 
 let animals: string[] = ['kuty', 'macs', 'cic'];
 
-animals = animals.map(element => {element += 'a'; return element;});
+animals = animals.map(element => {
+  element += 'a';
+  return element;
+});
 console.log(animals);
