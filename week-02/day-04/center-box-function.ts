@@ -10,9 +10,9 @@ const ctx = canvas.getContext('2d');
 // Draw 3 squares with that function.
 // Avoid code duplication.
 function rndColor(): string {
-  let r = 255*Math.random()|0,
-      g = 255*Math.random()|0,
-      b = 255*Math.random()|0;
+  let r: number = 255 * Math.random() | 0,
+      g: number = 255 * Math.random() | 0,
+      b: number = 255 * Math.random() | 0;
   return `rgb(${r}, ${g}, ${b})`;
 }
 function drawSquare(size: number): void {
