@@ -21,6 +21,10 @@ class Pirate {
     this.dead = false;
   }
 
+  public isDead(): boolean {
+    return this.dead;
+  }
+
   public decideRum(): void {
     if (rndNum(0, this.drunkness) < 50) {
       console.log(`Arrgh, ${this.id} is ${this.drunkness}% drunk! Pour me anudder!`);
