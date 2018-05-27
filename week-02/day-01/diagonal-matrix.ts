@@ -1,12 +1,12 @@
 export{};
 'use strict';
 
-function matrix(subCount): number[][] {
+function matrix(subCount: number): number[][] {
   let mainArr: number[][] = new Array(subCount);
-  for (let i = 0; i <= subCount; i++) {
+  for (let i: number = 0; i <= subCount; i++) {
     mainArr[i] = new Array(subCount);
 //    mainArr[i] = mainArr[i].map(element => { element = 0; return element;});
-    for (let j = 0; j <= subCount; j++) {
+    for (let j: number = 0; j <= subCount; j++) {
       if (subCount - j == i) {
         mainArr[i][j] = 1;
       } else {
