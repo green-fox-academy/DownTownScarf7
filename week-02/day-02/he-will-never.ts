@@ -1,4 +1,4 @@
-export{};
+export { };
 'use strict';
 // Things are a little bit messed up
 // Your job is to decode the notSoCrypticMessage by using the hashmap as a look up table
@@ -17,6 +17,6 @@ let hashmap = {
   3: 'say goodbye '
 };
 
-notSoCrypticMessage.forEach((ele, ind) => {out += hashmap[ele]});
+notSoCrypticMessage.forEach((ele) => { out += hashmap[ele] });
 
 console.log(out)
