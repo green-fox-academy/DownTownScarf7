@@ -1,4 +1,4 @@
-export{};
+export { };
 'use strict';
 
 // default list
@@ -9,8 +9,8 @@ let accounts: any[] = [
 ];
 
 // first task
-function getNameAndBalance(list:any[]):void{
-  let dataList:string[] = [];
+function getNameAndBalance(list: any[]): void {
+  let dataList: string[] = [];
   list.forEach(elem => {
     dataList = [];
     dataList.push(elem.client_name);
@@ -20,22 +20,22 @@ function getNameAndBalance(list:any[]):void{
 }
 
 // second task
-function transferAmount(accList:any[], accFrom:number, accTo:number, amount:number):void{
-  let accFromBal:number = 0, accToBal:number = 0, accFromCheck:boolean = false, accToCheck:boolean = false;
+function transferAmount(accList: any[], accFrom: number, accTo: number, amount: number): void {
+  let accFromBal: number = 0, accToBal: number = 0, accFromCheck: boolean = false, accToCheck: boolean = false;
   // check if accs exist
   accList.forEach(elem => {
-    if (accFrom == elem.account_number) {
+    if (accFrom === elem.account_number) {
       accFromCheck = true;
-    } else if (accTo == elem.account_number) {
+    } else if (accTo === elem.account_number) {
       accToCheck = true;
     }
   });
   // proceed if accs exist
-  if (accFromCheck && accToCheck){
+  if (accFromCheck && accToCheck) {
     accList.forEach(elem => {
-      if (accFrom == elem.account_number) {
+      if (accFrom === elem.account_number) {
         elem.balance -= amount;
-      } else if (accTo == elem.account_number) {
+      } else if (accTo === elem.account_number) {
         elem.balance += amount;
       }
     });
