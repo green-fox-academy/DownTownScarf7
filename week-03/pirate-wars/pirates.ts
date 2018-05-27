@@ -1,5 +1,6 @@
 'use strict';
 
+// RNG
 function rndNum(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -9,6 +10,7 @@ class Pirate {
   protected atk: number;
   protected dfs: number;
   protected health: number;
+  protected maxHealth: number;
   protected dead: boolean;
   protected id: string;
 
@@ -18,6 +20,7 @@ class Pirate {
     this.atk = rndNum(20, 30);
     this.dfs = rndNum(20, 30);
     this.health = 100;
+    this.maxHealth = this.health + 0;
     this.dead = false;
   }
 
@@ -26,7 +29,7 @@ class Pirate {
   }
 
   public decideRum(): void {
-    if (rndNum(0, this.drunkness) < 50) {
+    if (rndNum(0, this.drunkness) - (this.maxHealth - this.health) < 50) {
       console.log(`Arrgh, ${this.id} is ${this.drunkness}% drunk! Pour me anudder!`);
       this._drinkRum();
     } else {
@@ -35,11 +38,13 @@ class Pirate {
   }
 
   private _drinkRum(): void {
-    this.drunkness += rndNum(10, 25);
-    this.modHealth(5);
+    let temp: number = rndNum(10, 25);
+    this.drunkness += temp;
+    this.modHealth(temp);
     this._checkDrunkness();
   }
 
+  // Modifies stats according to drunkness
   private _checkDrunkness(): void {
     if (this.drunkness < 20) {
       this.atk = rndNum(20, 30);
@@ -67,11 +72,12 @@ class Pirate {
   private _vomit(): void {
     let temp: number = rndNum(20, 50);
     this.drunkness -= temp;
-    this.modHealth(-10);
+    this.modHealth(-20);
     console.log(`Blehh, ${this.id} just lost ${temp}% drunkness!`);
     this._checkDrunkness();
   }
 
+  // Modifies health and checks if pirate is dead
   public modHealth(num: number): void {
     this.health += num;
     if (this.health <= 0) {
@@ -81,7 +87,8 @@ class Pirate {
     }
   }
 
-  public modStats(num: number): void {
+  // Modifies stats
+  private _modStats(num: number): void {
     this.atk += num;
     this.dfs += num;
   }
