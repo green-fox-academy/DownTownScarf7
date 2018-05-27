@@ -9,8 +9,10 @@ const ctx = canvas.getContext('2d');
 //  - The stars should be small squares
 //  - The stars should have random positions on the canvas
 //  - The stars should have random color (some shade of grey)
-function rndNum(min: number,max: number): number{
-    return Math.floor(Math.random()*(max-min+1)+min);
+
+// RNG
+function rndNum(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 function main(starNum): void {
   // background
