@@ -3,7 +3,7 @@ export{};
 
 let typo: string = 'kuty';
 
-function appendA(inStr){
+function appendA(inStr: string): string{
   inStr += 'a';
   return inStr;
 };
