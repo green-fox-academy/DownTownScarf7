@@ -5,7 +5,7 @@ function bubble(arr: number[], ord: boolean = false): number[] {
   function sortNumber(a: number, b: number): number {
     return a - b;
   }
-  if (ord == true) {
+  if (ord === true) {
     return arr.sort(sortNumber).reverse();
   } else {
     return arr.sort(sortNumber);
