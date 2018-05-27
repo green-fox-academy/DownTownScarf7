@@ -48,7 +48,7 @@ class Ship {
     return this._crew.length;
   }
 
-  public isDead() {
+  public isDead(): boolean {
     return this._sunk;
   }
 
@@ -163,7 +163,7 @@ class Ship {
   }
 
   // Ram and board the other ship
-  private _board() {
+  private _board(): void {
     console.log('Boarding not implemented yet!');
     this._modHealth(-1000);
   }
