@@ -35,7 +35,7 @@ class Pirate {
 
   // To drink or not to drink
   public decideRum(): void {
-    if (rndNum(0, this.drunkness) - (this.maxHealth - this.health) < 50) {
+    if (rndNum(0, this.drunkness) - (this.maxHealth - this.health) < 40) {
       console.log(`Arrgh, ${this.id} is ${this.drunkness}% drunk! Pour me anudder!`);
       this._drinkRum();
     } else {
@@ -78,6 +78,20 @@ class Pirate {
     this._checkDrunkness();
   }
 
+  //Fights another pirate
+  public fight(target: Pirate) {
+    if (this.health > 0) {
+      if (target.dfs + 5 < this.atk) {
+        target.modHealth(target.dfs - this.atk)
+        target._modStats(0, -1);
+        target.fight(this);
+      } else {
+        target.modHealth(-5);
+        target._modStats(0, -2);
+      }
+    }
+  }
+
   // Modifies health and checks if pirate is dead
   public modHealth(num: number): void {
     this.health += num;
@@ -92,6 +106,12 @@ class Pirate {
   private _modStats(atk: number, dfs: number): void {
     this.atk += atk;
     this.dfs += dfs;
+    if (this.atk < this.atkOriginal) {
+      this.atk = this.atkOriginal + 0;
+    }
+    if (this.dfs < this.dfsOriginal) {
+      this.dfs = this.atkOriginal + 0;
+    }
   }
 }
 
