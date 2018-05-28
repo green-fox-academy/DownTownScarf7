@@ -18,65 +18,65 @@ function wait(ms: number): void {
 }
 
 class Ship {
-  private _crew: Pirate[];
-  private _id: string;
-  private _health: number;
-  private _maxHealth: number;
-  private _cannonNum: number;
-  private _rumStock: number;
-  private _sunk: boolean;
+  private crew: Pirate[];
+  private id: string;
+  private health: number;
+  private maxHealth: number;
+  private cannonNum: number;
+  private rumStock: number;
+  private sunk: boolean;
 
   constructor(id: number, health: number = 5000, cannonNum: number = 20, crewSize: number = 20) {
-    this._crew = [];
-    this._id = `Ship ${id}`;
-    this._health = health;
-    this._maxHealth = this._health + 0;
-    this._cannonNum = cannonNum;
-    this._rumStock = 3;
-    this._sunk = false;
-    this._recruitCrew(crewSize);
-    console.log(`${this._id} on the seven seas with ${crewSize} seadogs!`);
+    this.crew = [];
+    this.id = `Ship ${id}`;
+    this.health = health;
+    this.maxHealth = this.health + 0;
+    this.cannonNum = cannonNum;
+    this.rumStock = 3;
+    this.sunk = false;
+    this.recruitCrew(crewSize);
+    console.log(`${this.id} on the seven seas with ${crewSize} seadogs!`);
   }
 
   public inspectCrew(): void {
-    for (let i: number = 0; i < this._crew.length; i++) {
-      console.log(this._crew[i]);
+    for (let i: number = 0; i < this.crew.length; i++) {
+      console.log(this.crew[i]);
     }
   }
 
   public getCrewSize(): number {
-    return this._crew.length;
+    return this.crew.length;
   }
 
   public isDead(): boolean {
-    return this._sunk;
+    return this.sunk;
   }
 
   // Logs name, crewsize, health and the number of cannons
   public inspectShip(): void {
-    console.log(`--------------\n${this._id}\n--------------\nCrew size: ${this._crew.length}\nHealth: ${this._health}\nCannons: ${this._cannonNum}\n--------------`);
+    console.log(`--------------\n${this.id}\n--------------\nCrew size: ${this.crew.length}\nHealth: ${this.health}\nCannons: ${this.cannonNum}\n--------------`);
   }
 
   // Use Pirate object's decideRum method on every pirate if they have any in stock
   public drinkRum(): void {
-    if (this._rumStock > 0) {
-      for (let i: number = 0; i < this._crew.length; i++) {
-        this._crew[i].decideRum();
+    if (this.rumStock > 0) {
+      for (let i: number = 0; i < this.crew.length; i++) {
+        this.crew[i].decideRum();
       }
-      this._rumStock--;
+      this.rumStock--;
     } else {
       console.log('ARRRRRRRRRRRRRRRRRRRGH!!! WE ARE OUT OF RUM MATEYS!');
     }
   }
 
   // The first pirate on a ship is getting the Captain class instead of a normal Pirate
-  private _recruitCrew(num: number): void {
-    let temp: number = this._crew.length;
+  private recruitCrew(num: number): void {
+    let temp: number = this.crew.length;
     for (let i: number = 0 + temp; i < num + temp; i++) {
-      if (this._crew.length === 0) {
-        this._crew.push(new Captain(i, this._id));
+      if (this.crew.length === 0) {
+        this.crew.push(new Captain(i, this.id));
       } else {
-        this._crew.push(new Pirate(i, this._id));
+        this.crew.push(new Pirate(i, this.id));
       }
     }
   }
@@ -85,90 +85,102 @@ class Ship {
   // If a ship has maximum health, then it should fire with less cannons, else it would almost always win
   // Uses recursion for the targeted ship to return fire
   public battle(target: Ship): void {
-    if (this._health > 0 && this.getCrewSize() > 0) {
-      if (this._cannonNum > 0) {
-        if (this._health === this._maxHealth) {
-          let temp: number = rndNum(Math.floor(this._cannonNum / 3), this._cannonNum);
-          console.log(`${this._id} engaged ${target._id} with ${temp} cannons.`);
-          target._fireAt(temp);
+    if (this.health > 0 && this.getCrewSize() > 0) {
+      if (this.cannonNum > 0) {
+        if (this.health === this.maxHealth) {
+          let temp: number = rndNum(Math.floor(this.cannonNum / 3), this.cannonNum);
+          console.log(`${this.id} engaged ${target.id} with ${temp} cannons.`);
+          target.fireAt(temp);
         } else {
-          console.log(`${this._id} firing at ${target._id} with ${this._cannonNum} cannons.`);
-          target._fireAt(this._cannonNum);
+          console.log(`${this.id} firing at ${target.id} with ${this.cannonNum} cannons.`);
+          target.fireAt(this.cannonNum);
         }
       } else {
-        console.log(`${this._id} is ramming ${target._id} for ${Math.floor(this._health / 4)} damage and ${this.getCrewSize()} pirates are boarding ${target._id} which has ${target.getCrewSize()} pirates`);
-        target._modHealth(Math.floor(this._health / 4));
-        target._board();
+        console.log(`${this.id} is ramming ${target.id} for ${Math.floor(this.health / 4)} damage and ${this.getCrewSize()} pirates are boarding ${target.id} which has ${target.getCrewSize()} pirates`);
+        target.modHealth(Math.floor(this.health / 4));
+        target.board(this);
       }
-      wait(100);
+     // wait(100);
       target.battle(this);
     } 
   }
 
   // Changes health, checks if the ship has sunk or has no crew
-  private _modHealth(num: number): void {
-    this._health += num;
-    if (this._health <= 0) {
-      this._health = 0;
-      console.log(`${this._id} just sunk!`);
-      this._sunk = true;
+  private modHealth(num: number): void {
+    this.health += num;
+    if (this.health <= 0) {
+      this.health = 0;
+      console.log(`${this.id} just sunk!`);
+      this.sunk = true;
     } else if (this.getCrewSize() <= 0){
-      console.log(`${this._id}'s crew perished!`);
-      this._sunk = true;
+      console.log(`${this.id}'s crew perished!`);
+      this.sunk = true;
     }
   }
 
   // Fires at current ship
   // Variables are created here to be able to log what happened efficiently
   // All cannons fire once except if target ship sinks between cannonfires
-  private _fireAt(cannonNum: number): void {
+  private fireAt(cannonNum: number): void {
     let dmgCounter: number = 0,
         dstrdCannonCounter: number = 0,
         crewCasualtyCounter: number = 0,
         crewDamageCounter: number = 0;
 
     for (let i: number = 0; i < cannonNum; i++) {
-      if (this._health > 0) {
+      if (this.health > 0) {
         let cannonDmg: number = rndNum(10, 100);
         dmgCounter += cannonDmg;
-        this._modHealth(-Math.abs(cannonDmg));
+        this.modHealth(-Math.abs(cannonDmg));
         if (rndNum(0, 100) < 15) {
           dstrdCannonCounter++;
-          this._cannonNum--;
+          this.cannonNum--;
         }
         if (rndNum(0, 100) < 25) {
           let temp: number[] = [rndNum(1, 5),  rndNum(20, 50)];
           crewCasualtyCounter += temp[0];
           crewDamageCounter += temp[1];
-          this._damageCrew(temp[0], temp[1]);
+          this.damageCrew(temp[0], temp[1]);
         }
       } else {
         break;
       }
     }
-    //console.log(`--- ${this._id} suffered ${dmgCounter} damage, lost ${dstrdCannonCounter} cannon(s) and ${crewCasualtyCounter} men suffered ${crewDamageCounter} damage ---`);
-    console.log(`--- ${this._id} has ${this._health} health, ${this._cannonNum} cannon(s) and ${this.getCrewSize()} pirate(s) ---`);
+    //console.log(`--- ${this.id} suffered ${dmgCounter} damage, lost ${dstrdCannonCounter} cannon(s) and ${crewCasualtyCounter} men suffered ${crewDamageCounter} damage ---`);
+    console.log(`--- ${this.id} has ${this.health} health, ${this.cannonNum} cannon(s) and ${this.getCrewSize()} pirate(s) ---`);
   }
 
   // Damages random crewmembers and removes them if they are dead
-  private _damageCrew(numOfPirates: number, damage: number): void {
+  private damageCrew(numOfPirates: number, damage: number): void {
     for (let i: number = 0; i < numOfPirates; i++) {
       if (this.getCrewSize() > 0) {
-        this._crew[rndNum(0, this.getCrewSize() - 1)].modHealth(-Math.abs(damage));
-        this._crew = this._crew.filter(pirate => {
-          return !pirate.isDead();
-        })
+        this.crew[rndNum(0, this.getCrewSize() - 1)].modHealth(-Math.abs(damage));
+        this.cleanDeck();
       } else {
         break;
       }
     }
-    //console.log(`${this._id}'s ${numOfPirates} crewmember(s) suffered ${damage} damage!`);
+  }
+
+  private cleanDeck(): void {
+    this.crew = this.crew.filter(pirate => {
+      return !pirate.isDead();
+    })
   }
 
   // Ram and board the other ship
-  private _board(): void {
-    console.log('Boarding not implemented yet!');
-    this._modHealth(-Math.abs(this._health));
+  private board(attackingShip: Ship): void {
+    while (attackingShip.getCrewSize() > 0 && this.getCrewSize() > 0) {
+      for (let i: number = 0; i < attackingShip.getCrewSize(); i++) {
+        if (attackingShip.crew[i] !== undefined && this.crew[i] !== undefined) {
+          attackingShip.crew[i].fight(this.crew[i]);
+          this.cleanDeck();
+          attackingShip.cleanDeck();
+        } else {
+          break;
+        }
+      }
+    }
   }
 }
 
