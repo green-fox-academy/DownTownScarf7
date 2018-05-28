@@ -96,6 +96,8 @@ class Ship {
           target._fireAt(this._cannonNum);
         }
       } else {
+        console.log(`${this._id} is ramming ${target._id} for ${Math.floor(this._health / 4)} damage and ${this.getCrewSize()} pirates are boarding ${target._id} which has ${target.getCrewSize()} pirates`);
+        target._modHealth(Math.floor(this._health / 4));
         target._board();
       }
       wait(100);
@@ -144,7 +146,8 @@ class Ship {
         break;
       }
     }
-    console.log(`----------\n${this._id} Damage Report:\n   Damage suffered: ${dmgCounter}\n   Cannons destroyed: ${dstrdCannonCounter}\n   Crew: ${crewCasualtyCounter} men suffered ${crewDamageCounter} damage\n----------`);
+    //console.log(`--- ${this._id} suffered ${dmgCounter} damage, lost ${dstrdCannonCounter} cannon(s) and ${crewCasualtyCounter} men suffered ${crewDamageCounter} damage ---`);
+    console.log(`--- ${this._id} has ${this._health} health, ${this._cannonNum} cannon(s) and ${this.getCrewSize()} pirate(s) ---`);
   }
 
   // Damages random crewmembers and removes them if they are dead
@@ -165,7 +168,7 @@ class Ship {
   // Ram and board the other ship
   private _board(): void {
     console.log('Boarding not implemented yet!');
-    this._modHealth(-1000);
+    this._modHealth(-Math.abs(this._health));
   }
 }
 
