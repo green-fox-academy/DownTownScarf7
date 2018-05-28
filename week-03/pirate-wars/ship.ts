@@ -119,34 +119,24 @@ class Ship {
   }
 
   // Fires at current ship
-  // Variables are created here to be able to log what happened efficiently
   // All cannons fire once except if target ship sinks between cannonfires
   private fireAt(cannonNum: number): void {
-    let dmgCounter: number = 0,
-        dstrdCannonCounter: number = 0,
-        crewCasualtyCounter: number = 0,
-        crewDamageCounter: number = 0;
-
     for (let i: number = 0; i < cannonNum; i++) {
       if (this.health > 0) {
-        let cannonDmg: number = rndNum(10, 100);
-        dmgCounter += cannonDmg;
-        this.modHealth(-Math.abs(cannonDmg));
+        this.modHealth(-Math.abs(rndNum(10, 100)));
         if (rndNum(0, 100) < 15) {
-          dstrdCannonCounter++;
           this.cannonNum--;
+          if (this.cannonNum < 0) {
+            this.cannonNum = 0;
+          }
         }
         if (rndNum(0, 100) < 25) {
-          let temp: number[] = [rndNum(1, 5),  rndNum(20, 50)];
-          crewCasualtyCounter += temp[0];
-          crewDamageCounter += temp[1];
-          this.damageCrew(temp[0], temp[1]);
+          this.damageCrew(rndNum(1, 5), rndNum(20, 50));
         }
       } else {
         break;
       }
     }
-    //console.log(`--- ${this.id} suffered ${dmgCounter} damage, lost ${dstrdCannonCounter} cannon(s) and ${crewCasualtyCounter} men suffered ${crewDamageCounter} damage ---`);
     console.log(`--- ${this.id} has ${this.health} health, ${this.cannonNum} cannon(s) and ${this.getCrewSize()} pirate(s) ---`);
   }
 
