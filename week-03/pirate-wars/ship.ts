@@ -85,7 +85,7 @@ class Ship {
   // If a ship has maximum health, then it should fire with less cannons, else it would almost always win
   // Uses recursion for the targeted ship to return fire
   public battle(target: Ship): void {
-    if (this.health > 0 && this.getCrewSize() > 0) {
+    if (this.health > 0 && this.getCrewSize() > 0 && target.health > 0 && target.getCrewSize() > 0) {
       if (this.cannonNum > 0) {
         if (this.health === this.maxHealth) {
           let temp: number = rndNum(Math.floor(this.cannonNum / 3), this.cannonNum);
@@ -122,7 +122,7 @@ class Ship {
   // All cannons fire once except if target ship sinks between cannonfires
   private fireAt(cannonNum: number): void {
     for (let i: number = 0; i < cannonNum; i++) {
-      if (this.health > 0) {
+      if (this.health > 0 && this.getCrewSize() > 0) {
         this.modHealth(-Math.abs(rndNum(10, 100)));
         if (rndNum(0, 100) < 15) {
           this.cannonNum--;
@@ -137,7 +137,7 @@ class Ship {
         break;
       }
     }
-    console.log(`--- ${this.id} has ${this.health} health, ${this.cannonNum} cannon(s) and ${this.getCrewSize()} pirate(s) ---`);
+    console.log(`${this.id} has ${this.health} health, ${this.cannonNum} cannon(s) and ${this.getCrewSize()} pirate(s)`);
   }
 
   // Damages random crewmembers and removes them if they are dead
@@ -159,18 +159,20 @@ class Ship {
   }
 
   // Ram and board the other ship
-  private board(attackingShip: Ship): void {
-    while (attackingShip.getCrewSize() > 0 && this.getCrewSize() > 0) {
-      for (let i: number = 0; i < attackingShip.getCrewSize(); i++) {
-        if (attackingShip.crew[i] !== undefined && this.crew[i] !== undefined) {
-          attackingShip.crew[i].fight(this.crew[i]);
+  private board(attacker: Ship): void {
+    while (attacker.getCrewSize() > 0 && this.getCrewSize() > 0) {
+      for (let i: number = 0; i < attacker.getCrewSize(); i++) {
+        if (attacker.crew[i] !== undefined && this.crew[i] !== undefined) {
+          attacker.crew[i].fight(this.crew[i]);
           this.cleanDeck();
-          attackingShip.cleanDeck();
+          attacker.cleanDeck();
         } else {
           break;
         }
       }
     }
+    this.modHealth(0);
+    attacker.modHealth(0);
   }
 }
 
