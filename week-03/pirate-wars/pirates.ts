@@ -9,8 +9,6 @@ class Pirate {
   protected drunkness: number;
   protected atk: number;
   protected dfs: number;
-  protected atkOriginal: number;
-  protected dfsOriginal: number;
   protected health: number;
   protected maxHealth: number;
   protected dead: boolean;
@@ -20,9 +18,7 @@ class Pirate {
     this.id = `Pirate ${id} of ${idShip}`;
     this.drunkness = rndNum(0, 50);
     this.atk = rndNum(5, 30);
-    this.dfs = rndNum(5, 30);
-    this.atkOriginal = this.atk + 0;
-    this.dfsOriginal = this.dfs + 0;
+    this.dfs = rndNum(5, 20);
     this.health = 100;
     this.maxHealth = this.health + 0;
     this.dead = false;
@@ -79,15 +75,22 @@ class Pirate {
   }
 
   //Fights another pirate
-  public fight(target: Pirate) {
+  public fight(target: Pirate): void {
     if (this.health > 0) {
       if (target.dfs + 5 < this.atk) {
-        target.modHealth(target.dfs - this.atk)
-        target._modStats(0, -1);
-        target.fight(this);
+        console.log(`${this.id} deals ${this.atk - target.dfs} damage to ${target.id}`);
+        target.modHealth(-Math.abs(this.atk - target.dfs));
+        if (target.health > 0) {
+          target._modStats(0, -1);
+          target.fight(this);
+        }
       } else {
         target.modHealth(-5);
-        target._modStats(0, -2);
+        console.log(`${this.id} deals 5 damage to ${target.id}`);
+        if (target.health > 0) {
+          target._modStats(0, -2);
+          target.fight(this);
+        }
       }
     }
   }
@@ -106,12 +109,13 @@ class Pirate {
   private _modStats(atk: number, dfs: number): void {
     this.atk += atk;
     this.dfs += dfs;
-    if (this.atk < this.atkOriginal) {
-      this.atk = this.atkOriginal + 0;
+    if (this.atk < 5) {
+      this.atk = 5;
     }
-    if (this.dfs < this.dfsOriginal) {
-      this.dfs = this.atkOriginal + 0;
+    if (this.dfs < 0) {
+      this.dfs = 0;
     }
+    console.log(`${this.id} now has ${this.atk} atk and ${this.dfs} dfs`);
   }
 }
 
