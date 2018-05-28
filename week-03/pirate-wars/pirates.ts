@@ -32,10 +32,7 @@ class Pirate {
   // To drink or not to drink
   public decideRum(): void {
     if (rndNum(0, this.drunkness) - (this.maxHealth - this.health) < 40) {
-      console.log(`Arrgh, ${this.id} is ${this.drunkness}% drunk! Pour me anudder!`);
       this._drinkRum();
-    } else {
-      console.log(`Arrgh, ${this.id} is ${this.drunkness}% drunk! That's 'nuff fo now!`);
     }
   }
 
@@ -70,11 +67,10 @@ class Pirate {
     let temp: number = rndNum(20, 50);
     this.drunkness -= temp;
     this.modHealth(-20);
-    console.log(`Blehh, ${this.id} just lost ${temp}% drunkness!`);
     this._checkDrunkness();
   }
 
-  //Fights another pirate
+  // Fights another pirate
   public fight(target: Pirate): void {
     if (this.health > 0) {
       if (target.dfs + 5 < this.atk) {
@@ -115,7 +111,6 @@ class Pirate {
     if (this.dfs < 0) {
       this.dfs = 0;
     }
-    console.log(`${this.id} now has ${this.atk} atk and ${this.dfs} dfs`);
   }
 }
 
