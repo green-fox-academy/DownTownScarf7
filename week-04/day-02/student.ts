@@ -12,12 +12,12 @@ class Student extends Person {
     this.skippedDays = 0;
   }
 
-  public setGoal(): void {
+  public getGoal(): void {
     console.log('Be a junior software developer');
   }
 
   public introduce(): void {
-    console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender} from ${this.previousOrganization} who skipped ${this.skippedDays} days`);
+    console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender} from ${this.previousOrganization} who skipped ${this.skippedDays} days from the course already.`);
   }
 
   public skipDays(numberofDays): void {

@@ -20,7 +20,7 @@ class Sponsor extends Person {
     this.hiredStudents++;
   }
 
-  public setGoal(): void {
+  public getGoal(): void {
     console.log('Hire brilliant junior software developers.');
   }
 }

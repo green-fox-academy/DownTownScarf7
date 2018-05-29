@@ -10,7 +10,7 @@ class Mentor extends Person {
     this.level = level;
   }
 
-  public setGoal(): void {
+  public getGoal(): void {
     console.log('Educate brilliant junior software developers.');
   }
 
