@@ -6,6 +6,7 @@ class Flower extends Plant {
   public constructor(color) {
     super(color);
     this.threshold = 5;
+    this.id = 'flower';
   }
 
   public water(amount: number): void {
