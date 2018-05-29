@@ -9,7 +9,7 @@ class Tree extends Plant {
   }
 
   public water(amount: number): void {
-    super.mainWater(Math.floor(amount * 0.40));
+    super.mainWater(amount * 0.40);
   }
 }
 
