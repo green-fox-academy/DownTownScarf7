@@ -1,9 +1,9 @@
 'use strict';
 
 class Person {
-  private name: string;
-  private age: number;
-  private gender: string;
+  protected name: string;
+  protected age: number;
+  protected gender: string;
 
   constructor(name: string = 'Jane Doe', age: number = 30, gender: string = 'female') {
     this.name = name;
