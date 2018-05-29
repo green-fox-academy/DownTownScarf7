@@ -9,7 +9,7 @@ class Flower extends Plant {
   }
 
   public water(amount: number): void {
-    super.mainWater(Math.floor(amount * 0.75));
+    super.mainWater(amount * 0.75);
   }
 }
 

@@ -16,6 +16,14 @@ class Plant {
       this.waterAmount += amount;
     }
   }
+
+  protected checkPlant(): void {
+    if (this.threshold > this.waterAmount) {
+      console.log(`The ${this.color} ${typeof this} needs water.`);
+    } else {
+      console.log(`The ${this.color} ${typeof this} doesn't need water.`);
+    }
+  }
 }
 
 export { Plant };
