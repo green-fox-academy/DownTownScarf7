@@ -24,3 +24,5 @@ class Sponsor extends Person {
     console.log('Hire brilliant junior software developers.');
   }
 }
+
+export { Sponsor };

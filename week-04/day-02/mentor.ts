@@ -18,3 +18,5 @@ class Mentor extends Person {
     console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender} ${this.level} mentor.`);
   }
 }
+
+export { Mentor };
