@@ -4,27 +4,27 @@ class Animal {
   private hunger: number;
   private thirst: number;
 
-  constructor(){
+  public constructor() {
     this.hunger = 50;
     this.thirst = 50;
   }
 
-  public eat() {
+  public eat(): void {
     this.hunger--;
   }
 
-  public drink() {
+  public drink(): void {
     this.thirst--;
   }
 
-  public play() {
+  public play(): void {
     this.hunger++;
     this.thirst++;
   }
 
-  public getStatus() {
+  public getStatus(): void {
     console.log(`Hunger: ${this.hunger}\nThirst:${this.thirst}`);
   }
 }
 
-export {Animal};
+export { Animal };
