@@ -1,19 +1,19 @@
 'use strict';
 
-import {Teacher} from './teacher';
+import { Teacher } from './teacher';
 
-function randomIntFromInterval(min, max) {
+function randomIntFromInterval(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 class Student {
   private IQ: number;
 
-  constructor() {
+  public constructor() {
     this.IQ = Math.floor(Math.random() * (200 - 50 + 1) + 50);
   }
 
-  public learn(min, max): void {
+  public learn(min: number, max: number): void {
     this.IQ += Math.floor(Math.random() * (max - min + 1) + min);
   }
 
@@ -37,4 +37,4 @@ class Student {
   }
 }
 
-export{Student};
+export { Student };
