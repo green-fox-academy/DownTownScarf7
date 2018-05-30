@@ -1,4 +1,4 @@
-export{};
+export { };
 'use strict';
 
 class DiceSet {
@@ -40,12 +40,12 @@ class DiceSet {
 }
 
 let diceSet = new DiceSet(),
-    numRolls: number = 6;
+  numRolls: number = 6;
 
 diceSet.roll();
 diceSet.getCurrent();
 console.log("------------------");
-while (!diceSet.dices.every(value => {return value === 6;})) {
+while (!diceSet.dices.every(value => { return value === 6; })) {
   for (let i: number = 0; i <= diceSet.numOfDices; i++) {
     if (diceSet.dices[i] != 6) {
       diceSet.reroll(i);
