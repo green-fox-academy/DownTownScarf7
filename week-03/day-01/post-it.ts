@@ -7,9 +7,9 @@ class PostIt {
   textColor: string;
 }
 
-let post1 = new PostIt,
-    post2 = new PostIt,
-    post3 = new PostIt;
+let post1 = new PostIt(),
+    post2 = new PostIt(),
+    post3 = new PostIt();
 post1.bacgroundColor = 'orange';
 post1.text = 'Idea 1';
 post1.textColor = 'blue';
