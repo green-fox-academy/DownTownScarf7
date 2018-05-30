@@ -1,3 +1,4 @@
+export { };
 'use strict';
 
 abstract class Instrument {
