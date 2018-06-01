@@ -1,11 +1,11 @@
-export{};
+export { };
 'use strict';
 
-declare function require(path:string):any;
+declare function require(path: string): any;
 
-function copyFile(fromFile:string, toFile:string):boolean{
+function copyFile(fromFile: string, toFile: string): boolean {
   const fs = require('fs');
-  try{
+  try {
     fs.createReadStream(fromFile).pipe(fs.createWriteStream(toFile));
     return true;
   }
@@ -13,8 +13,8 @@ function copyFile(fromFile:string, toFile:string):boolean{
     return false;
   }
 }
-if (copyFile('copy-file-from.txt', 'copy-file-to.txt')){
+if (copyFile('copy-file-from.txt', 'copy-file-to.txt')) {
   console.log('Done!');
-} else{
+} else {
   console.log('Fuck!');
 }

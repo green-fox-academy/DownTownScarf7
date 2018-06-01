@@ -1,12 +1,12 @@
 'use strict';
 
-declare function require(path:string):any;
+declare function require(path: string): any;
 
 const fs = require('fs');
-try{
+try {
   let f = fs.readFileSync('my-file.txt', 'utf-8');
   console.log(f);
 }
-catch(e){
+catch (e) {
   console.log('Unable to read file: my-file.txt');
 }

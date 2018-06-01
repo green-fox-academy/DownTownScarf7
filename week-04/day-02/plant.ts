@@ -1,6 +1,6 @@
 'use strict';
 
-class Plant {
+abstract class Plant {
   protected color: string;
   protected waterAmount: number;
   protected threshold: number;
@@ -18,11 +18,9 @@ class Plant {
   }
 
   protected checkPlant(): void {
-    if (this.threshold > this.waterAmount) {
-      console.log(`The ${this.color} ${this.id} needs water.`);
-    } else {
-      console.log(`The ${this.color} ${this.id} doesn't need water.`);
-    }
+    let temp: string = '';
+    this.threshold > this.waterAmount ? temp = 'needs' : temp = 'doesn\'t need';
+    console.log(`The ${this.color} ${this.id} ${temp} water.`);
   }
 }
 
