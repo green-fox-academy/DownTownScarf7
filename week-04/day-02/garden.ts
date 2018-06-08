@@ -36,7 +36,7 @@ class Garden {
   }
 
   public water(amount: number): void {
-    console.log(`\nWatering with ${amount}`)
+    console.log(`Watering with ${amount}`)
     for (let i: number = 0; i < this.plants.length; i++) {
       this.plants[i].water();
     }
