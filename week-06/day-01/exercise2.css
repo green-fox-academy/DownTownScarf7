@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  height: 150px;
+  width: 33%;
+}
+
+.green {
+  background-color: green;
+  flex: 1;
+}
+
+.yellow {
+  background-color: yellow;
+  flex: 2;
+}
+
+.purple {
+  background-color: purple;
+  flex: 1;
+}
