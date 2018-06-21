@@ -1,4 +1,6 @@
+.gitignore
 node_modules
+mkcd
 week-03/pirate-wars/pirate-main.ts
 week-04/day-04/count-letters.test.ts
 week-04/day-04/count-letters.ts
