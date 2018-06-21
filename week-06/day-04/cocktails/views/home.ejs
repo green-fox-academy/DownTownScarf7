@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cocktails</title>
+  </head>
+  <body>
+    <% if (check) { %>
+      <h2>No such cocktail!</h2>
+    <% } %>
+    <ul>
+      <% temp.forEach(elem => { %>
+        <li><%= elem.name %></li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
