@@ -9,3 +9,5 @@
 [2018/06/01-todo-app](https://github.com/DownTownScarf7/todo-app)
 
 [2018/06/04-wanderer](https://github.com/DownTownScarf7/wanderer-typescript)
+
+[2018/06/22-gallery](https://github.com/DownTownScarf7/gallery)
