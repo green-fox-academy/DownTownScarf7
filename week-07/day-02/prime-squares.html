@@ -42,8 +42,8 @@
   </section>
 
   <script>
-    for (let i = 2; i < 101; i++) {
-      (document.querySelector('section').appendChild(document.createElement('div'))).innerHTML = i;
+    for (let i = 2; i <= 100; i++) {
+      document.querySelector('section').appendChild(document.createElement('div')).innerHTML = i;
     }
 
     const divs = document.querySelectorAll('div');
