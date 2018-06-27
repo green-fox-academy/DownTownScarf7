@@ -7,7 +7,6 @@ let task = 0;
 
 http.onload = () => {
   const res = JSON.parse(http.responseText).book_data;
-  console.log(res);
   if (task === 1) {
     const ul = document.createElement('ul');
     mainDiv.appendChild(ul);
@@ -15,12 +14,20 @@ http.onload = () => {
       ul.appendChild(document.createElement('li')).innerHTML = elem.book_name;
     });
   } else if (task === 2) {
-    const table = document.createElement('table');
+    const table = document.createElement('table'),
+      trTitle = document.createElement('tr');
     mainDiv.appendChild(table);
+    table.appendChild(trTitle);
     res.forEach(elem => {
-      const tr = document.createElement('tr');
+      const tr = document.createElement('tr'),
+        counter = document.querySelectorAll('.thTitle');
       table.appendChild(tr);
       for (let i in elem) {
+        if (counter.length < 4) {
+          const thTitle = document.createElement('th');
+          thTitle.classList.add('thTitle');
+          trTitle.appendChild(thTitle).innerHTML = i;
+        }
         tr.appendChild(document.createElement('th')).innerHTML = elem[i];
       }
     });
