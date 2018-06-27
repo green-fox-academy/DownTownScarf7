@@ -1,15 +1,16 @@
 'use strict';
 
+require('dotenv').config();
 const express = require('express'),
   mysql = require('mysql'),
   app = express(),
   PORT = 3000;
 
 const conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'bookstore',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
 app.get('/test', (req, res) => {
