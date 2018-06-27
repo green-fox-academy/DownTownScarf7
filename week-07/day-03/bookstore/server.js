@@ -23,7 +23,7 @@ app.get('/api', (req, res) => {
 
   if (req.query.task == 2) {
     sql = `
-    SELECT book_name, aut_name, cate_descrip, pub_name, book_price
+    SELECT book_name as 'Title', aut_name as 'Author', cate_descrip as 'Category', pub_name as 'Publisher', book_price as 'Price'
     FROM book_mast
     LEFT JOIN author
     ON book_mast.aut_id = author.aut_id
