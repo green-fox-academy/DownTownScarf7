@@ -1,6 +1,6 @@
 'use strict';
 
-abstract class Plant {
+export abstract class Plant {
   protected color: string;
   protected waterAmount: number;
   protected threshold: number;
@@ -23,5 +23,3 @@ abstract class Plant {
     console.log(`The ${this.color} ${this.id} ${temp} water.`);
   }
 }
-
-export { Plant };
