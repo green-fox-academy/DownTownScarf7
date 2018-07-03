@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+  </head>
+  <body>
+    <div>
+      <button>I'm a button!</button>
+    </div>
+    <script>
+      document.querySelector('div').addEventListener('click', (event) => {
+        if (event.target === document.querySelector('button')) {
+          setTimeout(() => {
+            document.querySelector('div').appendChild(document.createElement('p')).innerHTML = '2 seconds elapsed';
+          }, 2000);
+        }
+      });
+    </script>
+  </body>
+</html>
