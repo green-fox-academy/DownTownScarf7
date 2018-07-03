@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+  </head>
+  <body>
+    <div>
+      <button>I'm a button!</button>
+    </div>
+    <script>
+      // I know that this is not the best solution but the task explanation is so breif that I think this is the most fitting.
+      let clicks = 0,
+        loaded = false;
+      setTimeout(() => {
+            loaded = true;
+          }, 5000);
+      document.querySelector('div').addEventListener('click', (event) => {
+        if (event.target === document.querySelector('button')) {
+          clicks++;
+          if (clicks >= 3 && loaded) {
+            document.querySelector('div').appendChild(document.createElement('p')).innerHTML = '5 seconds elapsed and clicked 3 times';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
