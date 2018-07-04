@@ -17,11 +17,13 @@
     
     // WITH BABEL:
     const content = 'Hello World',
-      props = {
-        className: 'container',
-        children: 'Hello World',
-      },
-      element = <div {...props}/>;
+      Message = props => <div>{props.msg}</div>,
+      element = (
+        <div className="container">
+          <Message msg="Hello World" />
+          <Message msg="Goodbye World" />
+        </div>
+      )
     ReactDOM.render(element, document.querySelector('#root'));
   </script>
 </body>
