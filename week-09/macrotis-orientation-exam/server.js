@@ -1,11 +1,11 @@
 'use strict';
 
 require('dotenv').config();
-const express = require('express'),
-  mysql = require('mysql'),
-  path = require('path'),
-  app = express(),
-  PORT = 3000;
+const express = require('express');
+const mysql = require('mysql');
+const path = require('path');
+const app = express();
+const PORT = 3000;
 
 app.use(express.static(__dirname));
 app.use(express.json());
@@ -24,6 +24,22 @@ app.get('/api/attractions', (req, res) => {
   let sql = 'SELECT * FROM attractions;';
 
   conn.query(sql, (err, rows) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+
+    res.json({
+      attractions: rows,
+    });
+  });
+});
+
+app.get('/api/attractions/:id', (req, res) => {
+  let sql = `SELECT * FROM attractions WHERE id = (?);`;
+  
+  conn.query(sql, req.params.id, (err, rows) => {
     if (err) {
       console.error(err);
       res.status(500).send();
