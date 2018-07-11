@@ -11,3 +11,7 @@ th,
 td {
   border: 2px solid #000000;
 }
+
+.selected {
+  background: #02f80f;
+}
