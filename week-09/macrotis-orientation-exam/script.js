@@ -4,11 +4,18 @@ const http = new XMLHttpRequest();
 let attrId = null;
 
 window.onload = () => {
+  const removeSelected = () => {
+    const selected = document.querySelector('.selected');
+    if (selected) {
+      selected.classList.remove('selected');
+    }
+  }
   // Edit buttons onclick events
   document.querySelector('table').addEventListener('click', event => {
     if (event.target.classList.contains('btn')) {
+      removeSelected();
+      event.target.parentNode.classList.add('selected');
       attrId = event.target.dataset.id;
-      console.log(event.target.dataset.id);
       const http2 = new XMLHttpRequest();
       http2.open('GET', `http://localhost:3000/api/attractions/${event.target.dataset.id}`);
       http2.setRequestHeader("Content-Type", "application/json");
@@ -30,6 +37,7 @@ window.onload = () => {
     http.setRequestHeader("Content-Type", "application/json");
     if (attrId) {
       http.onload = () => {
+        console.log(http.responseText);
         const tr = document.querySelector(`[data-id="${attrId}"]`).parentNode;
         tr.innerHTML = '';
         const btnEdit = document.createElement('button');
@@ -76,6 +84,14 @@ window.onload = () => {
         recommended_age: inputs[7].value,
       }));
     }
+  });
+
+  document.querySelector('#cancel').addEventListener('click', event => {
+    removeSelected();
+    document.querySelectorAll('label').forEach(element => {
+      element.childNodes[1].value = '';
+    });
+    attrId = null;
   });
 
   //
