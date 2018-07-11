@@ -3,15 +3,43 @@
   padding: 0;
 }
 
+#wrapper {
+  overflow-x: scroll;
+}
+
 table {
+  width: 90%;
   border: 5px solid #000000;
+  border-collapse: collapse;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
 }
 
 th,
 td {
   border: 2px solid #000000;
+  padding: 5px;
 }
 
-.selected {
+table .btn {
+  min-width: 50px;
+  height: inherit;
+  display: block;
+}
+
+.selected,
+.selected:nth-child(even),
+.selected .btn {
   background: #02f80f;
+}
+
+.selected:hover,
+.selected .btn:hover {
+  background: #00db0b;
 }
