@@ -8,11 +8,12 @@ window.onload = () => {
   document.querySelector('table').addEventListener('click', event => {
     if (event.target.classList.contains('btn')) {
       attrId = event.target.dataset.id;
+      console.log(event.target.dataset.id);
       const http2 = new XMLHttpRequest();
       http2.open('GET', `http://localhost:3000/api/attractions/${event.target.dataset.id}`);
       http2.setRequestHeader("Content-Type", "application/json");
       http2.onload = () => {
-        const { attr_name, city, price, longitude, lattitude, category, duration, recommended_age } = JSON.parse(http.responseText).attractions[0];
+        const { attr_name, city, price, longitude, lattitude, category, duration, recommended_age } = JSON.parse(http2.responseText).attractions[0];
         [attr_name, city, price, longitude, lattitude, category, duration, recommended_age].forEach((element, index) => {
           document.querySelectorAll('input')[index].value = element;
         });
@@ -28,6 +29,18 @@ window.onload = () => {
     http.open('POST', `http://localhost:3000/api/add`);
     http.setRequestHeader("Content-Type", "application/json");
     if (attrId) {
+      http.onload = () => {
+        const tr = document.querySelector(`[data-id="${attrId}"]`).parentNode;
+        tr.innerHTML = '';
+        const btnEdit = document.createElement('button');
+        btnEdit.dataset.id = (JSON.parse(http.responseText).id);
+        btnEdit.classList.add('btn', 'edit');
+        btnEdit.innerHTML = 'Edit';
+        [inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value, inputs[5].value, inputs[6].value, inputs[7].value].forEach(attr => {
+          tr.appendChild(document.createElement('td')).innerHTML = attr;
+        });
+        tr.appendChild(btnEdit);
+      }
       http.send(JSON.stringify({
         id: attrId,
         name: inputs[0].value,
@@ -40,6 +53,18 @@ window.onload = () => {
         recommended_age: inputs[7].value,
       }));
     } else {
+      http.onload = () => {
+        const tr = document.createElement('tr');
+        const btnEdit = document.createElement('button');
+        btnEdit.dataset.id = (JSON.parse(http.responseText).id);
+        btnEdit.classList.add('btn', 'edit');
+        btnEdit.innerHTML = 'Edit';
+        document.querySelector('tbody').appendChild(tr);
+        [inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value, inputs[5].value, inputs[6].value, inputs[7].value].forEach(attr => {
+          tr.appendChild(document.createElement('td')).innerHTML = attr;
+        });
+        tr.appendChild(btnEdit);
+      }
       http.send(JSON.stringify({
         name: inputs[0].value,
         city: inputs[1].value,
@@ -51,7 +76,6 @@ window.onload = () => {
         recommended_age: inputs[7].value,
       }));
     }
-    location.reload();
   });
 
   //
