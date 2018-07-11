@@ -54,41 +54,41 @@ app.get('/api/attractions/:id', (req, res) => {
 
 app.post('/api/add', (req, res) => {
   const { name, city, category, price, longitude, lattitude, recommended_age, duration } = req.body;
+  const sql = req.body.id ? 
+    `UPDATE attractions
+     SET 
+     attr_name = "${name}", 
+     city = "${city}", 
+     category = "${category}", 
+     price = "${price}", 
+     longitude = "${longitude}", 
+     lattitude = "${lattitude}", 
+     recommended_age = "${recommended_age}", 
+     duration = "${duration}" 
+     WHERE 
+     (id = "${req.body.id}");`
+  :
+    `INSERT INTO attractions (
+      attr_name, 
+      city, 
+      category, 
+      price, 
+      longitude, 
+      lattitude, 
+      recommended_age, 
+      duration
+    ) 
+    VALUE (
+      "${name}", 
+      "${city}", 
+      "${category}", 
+      "${price}", 
+      "${longitude}", 
+      "${lattitude}", 
+      "${recommended_age}", 
+      "${duration}"
+    );`;
   if (name && city && category && price && longitude && lattitude && recommended_age && duration) {
-    const sql = req.body.id ? 
-      `UPDATE attractions
-       SET 
-       attr_name = "${name}", 
-       city = "${city}", 
-       category = "${category}", 
-       price = "${price}", 
-       longitude = "${longitude}", 
-       lattitude = "${lattitude}", 
-       recommended_age = "${recommended_age}", 
-       duration = "${duration}" 
-       WHERE 
-       (id = "${req.body.id}");`
-    :
-      `INSERT INTO attractions (
-        attr_name, 
-        city, 
-        category, 
-        price, 
-        longitude, 
-        lattitude, 
-        recommended_age, 
-        duration
-      ) 
-      VALUE (
-        "${name}", 
-        "${city}", 
-        "${category}", 
-        "${price}", 
-        "${longitude}", 
-        "${lattitude}", 
-        "${recommended_age}", 
-        "${duration}"
-      );`;
   
     conn.query(sql, (err, rows) => {
       if (err) {
@@ -102,20 +102,12 @@ app.post('/api/add', (req, res) => {
         id: rows.insertId,
       });
     });
-  }
-
-  conn.query(sql, (err, rows) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send();
-      return;
-    }
-
+  } else {
     res.json({
       status: 'fail',
       id: 'N/A',
     });
-  });
+  }
 });
 
 app.listen(PORT, () => {
