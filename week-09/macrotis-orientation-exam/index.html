@@ -9,23 +9,25 @@
   <script src="./script.js"></script>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>City</th>
-        <th>Price</th>
-        <th>Longitude</th>
-        <th>Lattitude</th>
-        <th>Category</th>
-        <th>Duration</th>
-        <th>Recommended age</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div id="wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>Price</th>
+          <th>Longitude</th>
+          <th>Lattitude</th>
+          <th>Category</th>
+          <th>Duration</th>
+          <th>Recommended age</th>
+        </tr>
+      </thead>
+      <tbody>
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
   <form>
     <div id="main"></div>
     <div>
@@ -68,8 +70,8 @@
         Recommended age: <input type="number">
       </label>
     </div>
-    <input id="submit" type="submit" value="Submit">
-    <input id="cancel" type="button" value="Cancel">
+    <input class="btn" id="submit" type="submit" value="Submit">
+    <input class="btn" id="cancel" type="button" value="Cancel">
   </form>
 </body>
 </html>
