@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #main-window {
@@ -15,6 +16,10 @@
 #score-container {
   margin: 50px auto 20px auto;
   display: inline-flex;
+}
+
+#score {
+  margin-left: 5px;
 }
 
 #quiz-window {
@@ -44,6 +49,7 @@
 
 .answer {
   background: #3498DB;
+  border-radius: 3px;
   color: #FFFFFF;
   border: none;
   margin: 5px;
@@ -51,8 +57,9 @@
   height: 25%;
 }
 
-.answer:hover {
+.answer:hover:not(.correct):not(.wrong) {
   background: rgb(46, 135, 194);
+  font-size: 20px;
   cursor: pointer;
 }
 
@@ -70,6 +77,7 @@
 
 .answer.selected.correct {
   background: rgb(166, 253, 4);
+  font-size: 20px;
 }
 
 .answer.selected.wrong {
