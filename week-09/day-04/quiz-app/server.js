@@ -25,7 +25,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/questions', (req, res) => {
-  
+  const sqlQuestions = 'SELECT * FROM questions';
+  conn.query(sqlQuestions, (err, resTextQ) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send();
+      return;
+    }
+
+    res.json(resTextQ);
+  });
 });
 
 app.get('/api/game', (req, res) => {
