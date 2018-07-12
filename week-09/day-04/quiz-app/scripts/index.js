@@ -6,6 +6,7 @@ window.onload = () => {
 
   const getGame = () => {
     requestGame.open('GET', `${site}api/game`);
+    requestGame.setRequestHeader("Content-Type", "application/json");
     requestGame.onload = () => {
       const res = JSON.parse(requestGame.responseText);
       console.log(res);
